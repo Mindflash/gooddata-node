@@ -1,0 +1,54 @@
+{
+  "name": "gooddata-node",
+  "version": "0.0.1",
+  "description": "A GoodData API implementation for NodeJS.",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "npm prune",
+    "coverage": "nyc npm t",
+    "release": "standard-version",
+    "test": "mocha --recursive --exit test/**/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mindflash/gooddata-node.git"
+  },
+  "keywords": [
+    "gooddata",
+    "gdc"
+  ],
+  "contributors": [
+    {
+      "name": "Josh Larsen",
+      "email": "josh.larsen@mindflash.com",
+      "url": "https://github.com/larsenjh"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mindflash/gooddata-node/issues"
+  },
+  "homepage": "https://github.com/Mindflash/gooddata-node",
+  "nyc": {
+    "check-coverage": true,
+    "lines": 80,
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "temp-directory": "./coverage/.nyc_output"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "faker": "^4.1.0",
+    "mocha": "^5.0.0",
+    "nock": "^9.3.0",
+    "nyc": "^11.4.1",
+    "sinon": "^4.3.0",
+    "standard-version": "^4.3.0"
+  }
+}
