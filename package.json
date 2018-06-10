@@ -2,7 +2,7 @@
   "name": "gooddata-node",
   "version": "0.1.0",
   "description": "A GoodData API implementation for NodeJS.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "preinstall": "npm prune",
     "coverage": "nyc npm t",
