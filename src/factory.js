@@ -4,6 +4,7 @@ const API = require('./api');
 const Auth = require('./apis/auth');
 const LCM = require('./apis/lcm');
 const Project = require('./apis/project');
+const User = require('./apis/user');
 
 module.exports = {
   create(settings) {
@@ -22,6 +23,7 @@ module.exports = {
     const auth = new Auth(requestHelper, routeHelper);
     const lcm = new LCM(requestHelper, routeHelper);
     const project = new Project(requestHelper, routeHelper);
+    const user = new User(requestHelper, routeHelper);
 
     // register auth api for automatic re-auth on sess expire
     requestHelper.registerAuthProvider(auth);
@@ -30,6 +32,7 @@ module.exports = {
       auth,
       lcm,
       project,
+      user,
       requestHelper
     }, settings);
   }

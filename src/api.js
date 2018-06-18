@@ -4,6 +4,7 @@ class API {
     this.settings = settings;
     this.lcm = services.lcm;
     this.auth = services.auth;
+    this.user = services.user;
     this.project = services.project;
     this.requestHelper = services.requestHelper;
 
