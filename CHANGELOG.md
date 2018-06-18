@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/Mindflash/gooddata-node/compare/v0.1.1...v0.2.0) (2018-06-18)
+
+
+### Bug Fixes
+
+* user api ([ba2efc3](https://github.com/Mindflash/gooddata-node/commit/ba2efc3))
+
+
+### Features
+
+* user api ([c19e3bb](https://github.com/Mindflash/gooddata-node/commit/c19e3bb))
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/Mindflash/gooddata-node/compare/v0.1.0...v0.1.1) (2018-06-10)
 
