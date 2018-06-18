@@ -33,7 +33,7 @@ describe('route helper', () => {
     });
   });
 
-  describe('parse method', () => {
+  xdescribe('parse method', () => {
     it('parses route path parts out correctly', async () => {
       const routeHelper = new RouteHelper();
       const template = '/some/:var1/route/:var2/doit';
