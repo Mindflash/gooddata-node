@@ -61,6 +61,13 @@ class User {
     }, { login: params.email });
     return this.requestHelper.get(path);
   }
+
+  getUserDataPermissions(params) {
+    const path = this.routeHelper.interpolate(routes.GET_USER_DATA_PERMISSIONS, {
+      projectId: params.projectId
+    }, { users: params.users, offset: params.offset, count: params.count });
+    return this.requestHelper.get(path);
+  }
 }
 
 module.exports = User;
