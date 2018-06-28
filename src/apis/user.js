@@ -68,6 +68,23 @@ class User {
     }, { users: params.users, offset: params.offset, count: params.count });
     return this.requestHelper.get(path);
   }
+
+  updateFilters(params) {
+    const path = this.routeHelper.interpolate(routes.UPDATE_FILTERS, {
+      projectId: params.projectId
+    });
+
+    return this.requestHelper.post(path, {
+      body: {
+        userFilters: {
+          items: [{
+            user: params.userId,
+            userFilters: params.filters
+          }]
+        }
+      }
+    });
+  }
 }
 
 module.exports = User;
