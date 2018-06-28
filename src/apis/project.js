@@ -26,15 +26,24 @@ class Project {
       body: {
         userFilter: {
           content: {
-            expression: params.expression,
-            meta: {
-              category: params.category,
-              title: params.title
-            }
+            expression: params.expression
+          },
+          meta: {
+            category: params.category,
+            title: params.title
           }
         }
       }
     });
+  }
+
+  deleteDataPermission({ projectId, dataPermissionId }) {
+    const path = this.routeHelper.interpolate(routes.DELETE_DATA_PERMISSION, {
+      projectId,
+      dataPermissionId
+    });
+
+    return this.requestHelper.del(path);
   }
 
   translateIdentifierToUri(params) {
