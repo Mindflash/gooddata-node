@@ -1,6 +1,6 @@
 {
   "name": "gooddata-node",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "A GoodData API implementation for NodeJS.",
   "main": "src/index.js",
   "scripts": {
