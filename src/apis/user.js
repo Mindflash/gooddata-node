@@ -2,9 +2,10 @@ const routes = require('./user-routes');
 
 class User {
 
-  constructor(requestHelper, routeHelper) {
+  constructor(requestHelper, routeHelper, md) {
     this.requestHelper = requestHelper;
     this.routeHelper = routeHelper;
+    this.md = md;
   }
 
   createUser(params) {
@@ -60,6 +61,24 @@ class User {
       domain: params.domain
     }, { login: params.email });
     return this.requestHelper.get(path);
+  }
+
+  getUserDataPermissions(params) {
+    return this.md.getUserFilters(params);
+  }
+
+  updateFilters({ projectId, userId, filters }) {
+    return this.md.updateFilters({
+      projectId,
+      body: {
+        userFilters: {
+          items: [{
+            user: userId,
+            userFilters: filters
+          }]
+        }
+      }
+    });
   }
 }
 
