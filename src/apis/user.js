@@ -2,9 +2,10 @@ const routes = require('./user-routes');
 
 class User {
 
-  constructor(requestHelper, routeHelper) {
+  constructor(requestHelper, routeHelper, md) {
     this.requestHelper = requestHelper;
     this.routeHelper = routeHelper;
+    this.md = md;
   }
 
   createUser(params) {
@@ -63,23 +64,17 @@ class User {
   }
 
   getUserDataPermissions(params) {
-    const path = this.routeHelper.interpolate(routes.GET_USER_DATA_PERMISSIONS, {
-      projectId: params.projectId
-    }, { users: params.users, offset: params.offset, count: params.count });
-    return this.requestHelper.get(path);
+    return this.md.getUserFilters(params);
   }
 
-  updateFilters(params) {
-    const path = this.routeHelper.interpolate(routes.UPDATE_FILTERS, {
-      projectId: params.projectId
-    });
-
-    return this.requestHelper.post(path, {
+  updateFilters({ projectId, userId, filters }) {
+    return this.md.updateFilters({
+      projectId,
       body: {
         userFilters: {
           items: [{
-            user: params.userId,
-            userFilters: params.filters
+            user: userId,
+            userFilters: filters
           }]
         }
       }

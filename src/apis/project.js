@@ -2,9 +2,10 @@ const routes = require('./project-routes');
 
 class Project {
 
-  constructor(requestHelper, routeHelper) {
+  constructor(requestHelper, routeHelper, md) {
     this.requestHelper = requestHelper;
     this.routeHelper = routeHelper;
+    this.md = md;
   }
 
   getProjectUsers(params) {
@@ -17,53 +18,34 @@ class Project {
     return this.requestHelper.get(path);
   }
 
-  createDataPermission(params) {
-    const path = this.routeHelper.interpolate(routes.CREATE_DATA_PERMISSION, {
-      projectId: params.projectId
-    });
-
-    return this.requestHelper.post(path, {
+  createDataPermission({ projectId, expression, category, title }) {
+    return this.md.createMetadata({
+      projectId,
       body: {
         userFilter: {
-          content: {
-            expression: params.expression
-          },
-          meta: {
-            category: params.category,
-            title: params.title
-          }
+          content: { expression },
+          meta: { category, title }
         }
       }
     });
   }
 
   deleteDataPermission({ projectId, dataPermissionId }) {
-    const path = this.routeHelper.interpolate(routes.DELETE_DATA_PERMISSION, {
-      projectId,
-      dataPermissionId
-    });
-
-    return this.requestHelper.del(path);
+    return this.md.deleteMetadata({ projectId, id: dataPermissionId });
   }
 
-  translateIdentifierToUri(params) {
-    const path = this.routeHelper.interpolate(routes.IDENTIFIER_TO_URI, {
-      projectId: params.projectId
-    });
-
-    return this.requestHelper.post(path, {
+  translateIdentifierToUri({ projectId, identifiers }) {
+    return this.md.getIdentifiers({
+      projectId,
       body: {
-        identifierToUri: params.identifiers
+        identifierToUri: identifiers
       }
     });
   }
 
   obtainUriForAttributeValue({ projectId, labelUri, patterns }) {
-    const path = this.routeHelper.interpolate(routes.OBTAIN_URI_FOR_ATTRIBUTE_VALUE, {
-      projectId
-    });
-
-    return this.requestHelper.post(path, {
+    return this.md.getLabels({
+      projectId,
       body: {
         elementLabelToUri: [
           {
@@ -74,13 +56,6 @@ class Project {
         ]
       }
     });
-  }
-
-  getAttributeByUri({ uri }) {
-    const path = this.routeHelper.interpolate(routes.GET_ATTRIBUTE_BY_URI, {
-      uri
-    });
-    return this.requestHelper.get(path);
   }
 }
 
