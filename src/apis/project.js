@@ -33,30 +33,6 @@ class Project {
   deleteDataPermission({ projectId, dataPermissionId }) {
     return this.md.deleteMetadata({ projectId, id: dataPermissionId });
   }
-
-  translateIdentifierToUri({ projectId, identifiers }) {
-    return this.md.getIdentifiers({
-      projectId,
-      body: {
-        identifierToUri: identifiers
-      }
-    });
-  }
-
-  obtainUriForAttributeValue({ projectId, labelUri, patterns }) {
-    return this.md.getLabels({
-      projectId,
-      body: {
-        elementLabelToUri: [
-          {
-            mode: 'EXACT',
-            labelUri,
-            patterns
-          }
-        ]
-      }
-    });
-  }
 }
 
 module.exports = Project;

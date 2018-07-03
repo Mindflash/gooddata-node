@@ -7,7 +7,7 @@ class API {
     this.md = services.md;
     this.user = services.user;
     this.project = services.project;
-    this.requestHelper = services.requestHelper;
+    this.requestHelper = this.request = services.requestHelper;
 
     // surface login calls for convenience
     this.login = this.auth.login.bind(this.auth);
