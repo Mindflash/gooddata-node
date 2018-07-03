@@ -24,20 +24,40 @@ class MD {
     return this.requestHelper.del(path);
   }
 
-  getIdentifiers({ projectId, body }) {
-    const path = this.routeHelper.interpolate(routes.GET_IDENTIFIERS, {
+  lookupIdentifierUri({ projectId, identifiers }) {
+    if (identifiers && !Array.isArray(identifiers)) identifiers = [ identifiers ];
+    const path = this.routeHelper.interpolate(routes.LOOKUP_IDENTIFIER_URI, {
       projectId
     });
 
-    return this.requestHelper.post(path, { body });
+    return this.requestHelper.post(path, {
+      body: {
+        identifierToUri: identifiers
+      }
+    });
   }
 
-  getLabels({ projectId, body }) {
-    const path = this.routeHelper.interpolate(routes.GET_LABELS, {
-      projectId
+  lookupLabelUri({ projectId, elementLabelPatterns, order, offset, limit }) {
+    if (elementLabelPatterns && !Array.isArray(elementLabelPatterns)) elementLabelPatterns = [ elementLabelPatterns ];
+    const elementLabelToUri = elementLabelPatterns.map(label => {
+      return {
+        mode: label.mode || 'EXACT',
+        labelUri: label.labelUri,
+        patterns: label.patterns
+      };
     });
 
-    return this.requestHelper.post(path, { body });
+    const path = this.routeHelper.interpolate(routes.LOOKUP_LABEL_URI, {
+      projectId
+    }, {
+      order, offset, limit
+    });
+
+    return this.requestHelper.post(path, {
+      body : {
+        elementLabelToUri
+      }
+    });
   }
 
   getUserFilters(params) {
